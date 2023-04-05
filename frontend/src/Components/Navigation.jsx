@@ -4,9 +4,9 @@ function Navigation(){
     return(
         <div>
             <nav>
-                <Link to="/">Home</Link>
+                <Link to="/">Dashboard</Link>
                 <Link to="/about">About</Link>
-                <Link to="/contact">Contact</Link>
+                <Link to="/addEmployee">Add Employee</Link>
                 <Link to='/services'>Services</Link>
             </nav>
         </div>

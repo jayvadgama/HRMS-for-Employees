@@ -1,16 +1,16 @@
 import {Route,Routes} from 'react-router-dom';
-import Home from './Pages/Home';
+import Dashboard from './Pages/Dashboard';
 import About from './Pages/About';
-import Contact from './Pages/Contact';
+import AddEmployee from './Pages/AddEmployee';
 import Services from './Pages/Services';
 
 function RoutesTree(){
     return (
     <div>
         <Routes>
-            <Route path="/" element={<Home />}/>
+            <Route path="/" element={<Dashboard />}/>
             <Route path="about" element={<About />}/>
-            <Route path="contact" element={<Contact />}/>
+            <Route path="addEmployee" element={<AddEmployee />}/>
             <Route path= "services" element={<Services />} />
         </Routes>
     </div>

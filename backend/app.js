@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const app = express();
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 // This is a reusable function used to fetch a single employee,we will use it in get,update and delete routes to avoid code duplication
@@ -14,12 +15,12 @@ const getEmployee=(id)=>{
 
 
 // configure the app to use bodyParser()
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 
 app.get('/', (req, res) => {
   res.status(200).json({'message':"home"});
@@ -60,9 +61,11 @@ app.get('/employees/:id', (req, res) => {
 
 // Register endpoint
 app.post('/employees', (req, res) => {
+    const { firstName, secondName,email } = req.body;
+    console.log(req.body)
     try{
-        const { firstName, lastName,email } = req.body;
-        if(!firstName || !lastName ||  !email){
+        if(!firstName || !secondName ||  !email){
+            console.log('here')
             res.status(404).json({message:"Please enter all fields"})
         }else{
             let employees = [];
@@ -78,7 +81,7 @@ app.post('/employees', (req, res) => {
                 id: employees.length + 1,
                 email: email,
                 firstName: firstName,
-                lastName: lastName
+                secondName: secondName
                 };
 
 
@@ -142,6 +145,6 @@ app.delete('/employees/:id', (req, res) => {
     }
   });
 
-app.listen(3000, () => {
-  console.log('Server started on port 3000');
+app.listen(4000, () => {
+  console.log('Server started on port 4000');
 });
